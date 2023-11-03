@@ -15,10 +15,10 @@ Download the Community Edition (free) version.
 ![Download IntelliJ IDEA - Community Edition](install_InteliJ/download.gif)
 
 Go to the download folder and extract the file using `tar`
-In my case, the folder is `~/Downloads/IntelliJ`
+In my case, the folder is `~/Downloads/InteliJ`
 
 ```bash
-cd ~/Downloads/IntelliJ
+cd ~/Downloads/InteliJ
 tar -xzf ideaIC*.tar.gz
 ```
 
