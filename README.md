@@ -4,16 +4,16 @@ Learning project for clojure
 ## Commits convention
 Commit types
 
-📃: Documentation
-🐛: Bug fix
-🎨: Style
-🔁: Refactor
-🔧: Config
+- 📃: Documentation
+- 🐛: Bug fix
+- 🎨: Style
+- 🔁: Refactor
+- 🔧: Config
 
 Commit scopes
 
-🔌: Backend
-🖥️: Frontend
+- 🔌: Backend
+- 🖥️: Frontend
 
 Commit structure
 
