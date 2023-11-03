@@ -17,7 +17,10 @@ Commit scopes
 
 Commit structure
 
+```
 <type>(<scope>): <subject>
+```
+
 Example commit
 
 ```
