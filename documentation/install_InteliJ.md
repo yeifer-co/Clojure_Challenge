@@ -12,4 +12,4 @@ Go to official website: https://www.jetbrains.com/idea/download/?section=linux
 
 Download the Community Edition (free) version.
 
-![Download IntelliJ IDEA - Community Edition](documentation/install_InteliJ/download.gif)
+![Download IntelliJ IDEA - Community Edition](install_InteliJ/download.gif)
