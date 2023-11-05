@@ -2,6 +2,8 @@
 
 > Learning project for clojure
 
+> All commits on this repository should follow the [commit convention](doc/commit_convention.md).
+
 ## Getting started
 
 This clojure challenge is made up of 3 questions that reflect the learning you accumulated for the past week. Complete the following instructions:
@@ -9,8 +11,9 @@ This clojure challenge is made up of 3 questions that reflect the learning you a
 1. Create a Github/Gitlab repo to show the challenge code. When complete, send us the link to your challenge results.
 2. Duration: About 4-6 hours
 3. Install Cursive Plugin to Intellij and setup a clojure deps project. https://cursive-ide.com/userguide/deps.html
+4. Enjoy!
 
-1. Enjoy!
+> Instructions for installing InteliJ available in [Install InteliJ](doc/install_InteliJ.md).
 
 ## Problems
 ### Problem 1 Thread-last Operator ->>
