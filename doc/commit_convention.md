@@ -2,6 +2,7 @@
 Commit types
 
 - 📃: Documentation
+- 🌟: Feature
 - 🐞: Bug fix
 - 🎨: Style
 - 🔁: Refactor
@@ -16,7 +17,7 @@ Commit scopes
 Commit structure
 
 ```
-<type>(<scope>): <subject>
+<type>(<[optional]scope>): <subject>
 ```
 
 Example commit
