@@ -1,7 +1,6 @@
+;^; Problem 1 Solution
 (ns invoice_play_around
   (:require [clojure.edn :as edn]))
-
-;^; Problem 1 Solution
 
 ; Load invoice to play around with it
 (def invoice (edn/read-string (slurp "invoice.edn")))
