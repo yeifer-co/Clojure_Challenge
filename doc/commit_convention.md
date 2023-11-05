@@ -25,4 +25,5 @@ Example commit
 ```
 📃: Add commit conventions to README.md
 🐞(🧩): Fix bug in the codebase
+🔁(🧩|📦): Use main to execute script and be able to run inbuild inteliJ with deps
 ```
