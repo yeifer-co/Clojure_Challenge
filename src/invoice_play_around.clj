@@ -35,7 +35,8 @@
   ; Use ->> to thread the invoice items through the filter
   (->> invoice ; thread operator allows to pass the result of the previous expression as the last argument of the next expression
        :invoice/items
-       (filter check-conditions)))
+       (filter check-conditions)
+       (vec)))
 
 (def result (filter-by-conditions invoice))
 
