@@ -39,5 +39,11 @@
 
 (def result (filter-by-conditions invoice))
 
-; Print the result
-(println result)
+(defn -main
+  "Use this to play around with the invoice"
+  [& args]
+  ; Print the result
+  (println "Original invoice:")
+  (println invoice)
+  (println "Filtered invoice:")
+  (println result))
