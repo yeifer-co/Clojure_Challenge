@@ -17,7 +17,10 @@
   (->> invoice
        :invoice/items
        (filter (fn [item]
-                 (or (some #(= 19 (:tax/rate %)) (:taxable/taxes item))
-                     (some #(= 1 (:retention/rate %)) (:retentionable/retentions item)))))))
+                 (let [taxes       (:taxable/taxes item)
+                       retentions  (:retentionable/retentions item)]
+                   (if (some #(= 19 (:tax/rate %)) taxes)
+                     (not-any? #(= 1 (:retention/rate %)) retentions)
+                     (some #(= 1 (:retention/rate %)) retentions)))))))
 
 (def result (filter-by-conditions invoice))
