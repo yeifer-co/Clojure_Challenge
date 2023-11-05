@@ -17,7 +17,7 @@ Commit scopes
 Commit structure
 
 ```
-<type>(<[optional]scope>): <subject>
+<type>(<[optional]scope>|...|<[optional]scope>): <subject>
 ```
 
 Example commit
