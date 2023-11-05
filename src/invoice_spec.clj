@@ -79,7 +79,7 @@
          items)))
 
 (defn generate-invoice
-  "Generate an invoice that passes the spec ::invoice defined in invoice-spec.clj"
+  "Generate an invoice that passes the corresponding spec"
   [file-name]
   (let [invoice (read-json-file file-name)]
     {:invoice/issue-date (get-issue-date invoice)
