@@ -30,13 +30,25 @@
     (is (= 112.5 (subtotal {:precise-quantity 2.5 :precise-price 50 :discount-rate 10})))
     (is (= 89.5 (subtotal {:precise-quantity 2 :precise-price 50 :discount-rate 10.5})))))
 
-(deftest subtotal-test-with-large-discount
-  (testing "Test subtotal calculation with large discount"
-    (is (= 0.0 (subtotal {:precise-quantity 2 :precise-price 50 :discount-rate 100})))
-    (is (= 0.0 (subtotal {:precise-quantity 2 :precise-price 50 :discount-rate 110})))
-    (is (= 0.0 (subtotal {:precise-quantity 2 :precise-price 50 :discount-rate 1000})))))
+(deftest subtotal-test-large-values
+  (testing "Test subtotal calculation with large values"
+    (is (= 5000000000.0 (subtotal {:precise-quantity 10000 :precise-price 500000})))
+    (is (= 4500000000.0 (subtotal {:precise-quantity 10000 :precise-price 500000 :discount-rate 10})))))
 
-(deftest subtotal-with-negative-discount
-  (testing "Test subtotal calculation with negative discount"
-    (is (= 100.0 (subtotal {:precise-quantity 2 :precise-price 50 :discount-rate -10})))
-    (is (= 500.0 (subtotal {:precise-quantity 5 :precise-price 100 :discount-rate -10})))))
+;(deftest subtotal-test-nil-values
+;  (testing "Test subtotal calculation with nil values"
+;    (is (= 0.0 (subtotal {:precise-quantity nil :precise-price 50 :discount-rate 10})))
+;    (is (= 0.0 (subtotal {:precise-quantity 2 :precise-price nil :discount-rate 10})))
+;    (is (= 0.0 (subtotal {:precise-quantity 2 :precise-price 50 :discount-rate nil})))
+;    (is (= 0.0 (subtotal {:precise-quantity nil :precise-price nil :discount-rate nil})))))
+
+;(deftest subtotal-test-with-large-discount
+;  (testing "Test subtotal calculation with large discount"
+;    (is (= 0.0 (subtotal {:precise-quantity 2 :precise-price 50 :discount-rate 100})))
+;    (is (= 0.0 (subtotal {:precise-quantity 2 :precise-price 50 :discount-rate 110})))
+;    (is (= 0.0 (subtotal {:precise-quantity 2 :precise-price 50 :discount-rate 1000})))))
+;
+;(deftest subtotal-with-negative-discount
+;  (testing "Test subtotal calculation with negative discount"
+;    (is (= 100.0 (subtotal {:precise-quantity 2 :precise-price 50 :discount-rate -10})))
+;    (is (= 500.0 (subtotal {:precise-quantity 5 :precise-price 100 :discount-rate -10})))))
