@@ -1,4 +1,4 @@
-(ns clojure-lein.core
+(ns clojure-challenge.core
   (:gen-class))
 
 (defn -main
