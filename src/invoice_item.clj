@@ -13,14 +13,20 @@
 
 (def invoice (edn/read-string (slurp "invoice.edn")))
 
+(defn condition-1 [item]
+  (some #(= 19 (:tax/rate %)) (:taxable/taxes item)))
+
+(defn condition-2 [item]
+  (some #(= 1 (:retention/rate %)) (:retentionable/retentions item)))
+
+(defn check-conditions [item]
+  (if (condition-1 item)
+    (not (condition-2 item))
+    (condition-2 item)))
+
 (defn filter-by-conditions [invoice]
   (->> invoice
        :invoice/items
-       (filter (fn [item]
-                 (let [taxes       (:taxable/taxes item)
-                       retentions  (:retentionable/retentions item)]
-                   (if (some #(= 19 (:tax/rate %)) taxes)
-                     (not-any? #(= 1 (:retention/rate %)) retentions)
-                     (some #(= 1 (:retention/rate %)) retentions)))))))
+       (filter check-conditions)))
 
 (def result (filter-by-conditions invoice))
