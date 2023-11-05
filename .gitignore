@@ -1,6 +1,6 @@
 pom.xml
 pom.xml.asc
-clojure_lein.iml
+clojure_challenge.iml
 *.jar
 *.class
 /lib/
