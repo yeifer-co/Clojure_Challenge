@@ -42,8 +42,6 @@ Given the invoice defined in **invoice.edn** in this repo, use the thread-last -
 
 #### Solution
 
-src/invoice_play_around.clj
-
 The solution is a clojure script. It is available in the src folder of this repository.
 [Click here to see script](src/invoice_play_around.clj).
 
@@ -114,5 +112,75 @@ Given the invoice defined in **invoice.json** found in this repo, generate an in
 ```
 
 where invoice represents an invoice constructed from the JSON.
+
+#### Solution
+
+The solution is at the end of the `invoice_spec.clj` file. It is a clojure script. It is available in the src folder of this repository.
+[Click here to see script](src/invoice_spec.clj).
+
+```clojure
+;^; Problem 2 Solution
+(defn parse-date
+  "Parse a date string into a date object"
+  [date-string]
+  (let [date-formatter (SimpleDateFormat. "dd/MM/yyyy")]
+    (.parse date-formatter date-string)))
+
+(defn read-json-file
+  "Read a JSON file and return a map"
+  [file-name]
+  (json/read-str (slurp file-name) :key-fn keyword))
+
+(defn get-issue-date
+  "Get the issue date from the invoice"
+  [invoice]
+  (parse-date (get-in invoice [:invoice :issue_date])))
+
+(defn get-customer
+  "Get the customer from the invoice"
+  [invoice]
+  (let [customer (get-in invoice [:invoice :customer])]
+    {:customer/name  (get-in customer [:company_name])
+     :customer/email (get-in customer [:email])}))
+
+(defn get-items
+  "Get the items from the invoice"
+  [invoice]
+  (let [items (get-in invoice [:invoice :items])]
+    (map (fn [item]
+           {:invoice-item/price    (get-in item [:price])
+            :invoice-item/quantity (get-in item [:quantity])
+            :invoice-item/sku      (get-in item [:sku])
+            :invoice-item/taxes    (vec (map (fn [tax]
+                                               {
+                                                :tax/category (keyword (clojure.string/lower-case (get-in tax [:tax_category])))
+                                                :tax/rate     (double (get-in tax [:tax_rate]))
+                                                })
+                                             (get-in item [:taxes])))
+            })
+         items)))
+
+(defn generate-invoice
+  "Generate an invoice that passes the corresponding spec"
+  [file-name]
+  (let [invoice (read-json-file file-name)]
+    {:invoice/issue-date (get-issue-date invoice)
+     :invoice/customer  (get-customer invoice)
+     :invoice/items     (vec (get-items invoice))}))
+
+(defn -main
+  "Use this execute the invoice spec"
+  [& args]
+  (let [invoice (generate-invoice "invoice.json")]
+    (println (s/valid? ::invoice invoice))
+    (s/explain ::invoice invoice)))
+```
+
+#### Comments
+
+- My first approach was to use `clojure.spec.alpha/keys` to define the invoice spec. However, I found it myself in a bottleneck when defining the spec for the nested maps. Looking for a solution, I found a blog post that suggested to use `clojure.spec.alpha/and` and `clojure.spec.alpha/or` to define the spec for the nested maps. However, I was not able to make it work.
+- I decide to use plain clojure maps to define the spec. It was easier to define the spec for the nested maps using native functions. However, I am not sure if this is the best approach.
+- It was really helpful to use `clojure.spec.alpha/explain` to debug the spec definition.
+
 ## Problem 3: Test Driven Development
 Given the function **subtotal** defined in **invoice-item.clj** in this repo, write at least five tests using clojure core **deftest** that demonstrates its correctness. This subtotal function calculates the subtotal of an invoice-item taking a discount-rate into account. Make sure the tests cover as many edge cases as you can!
